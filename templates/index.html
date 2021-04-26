@@ -108,7 +108,7 @@
             csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
           },
           success: function (data) {
-            $("#result").html("https://ommg.herokuapp.com/" + data);
+            $("h2").html("https://ommg.herokuapp.com/" + data);
           },
         });
       });
