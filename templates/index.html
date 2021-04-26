@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Url Shortner</title>
+
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body,
+      section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: "Lato", sans-serif;
+        line-height: 1.5;
+        color: #111;
+      }
+
+      main {
+        max-width: 720px;
+        width: 100%;
+
+        border-radius: 2.5px;
+        box-shadow: 0 10px 20px rgba(17, 17, 17, 0.125),
+          0 5px 5px rgba(17, 17, 17, 0.25);
+      }
+
+      h1 {
+        padding: 1rem;
+        color: #000;
+      }
+
+      input,
+      button {
+        font-family: inherit;
+        line-height: inherit;
+        color: inherit;
+        border: 5px solid whitesmoke;
+        padding: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      input {
+        box-sizing: border-box;
+        width: 100%;
+      }
+
+      .buttons {
+        display: flex;
+      }
+
+      button {
+        cursor: pointer;
+        font-weight: 800;
+        font-size: 1.2rem;
+        flex: 1;
+        background-color: rgba(144, 164, 174, 1);
+        color: rgba(20, 24, 36, 1);
+      }
+
+      section {
+        min-height: 120px;
+        text-align: center;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 style="text-align: center">URL Shortener</h1>
+      <form id="post-form">
+        {% csrf_token %}
+        <input type="text" name="link" id="link" placeholder="Enter URL here" />
+        <div class="buttons">
+          <button type="submit" id="shorten">Shorten</button>
+        </div>
+      </form>
+
+      <section id="section"><h2 id="result"></h2></section>
+    </main>
+
+    <script type="text/javascript">
+      $(document).on("submit", "#post-form", function (e) {
+        e.preventDefault();
+
+        $.ajax({
+          type: "POST",
+          url: "/create",
+          data: {
+            link: $("#link").val(),
+            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+          },
+          success: function (data) {
+            $("#result").html("http://ommg.ga/" + data);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
