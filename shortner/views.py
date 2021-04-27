@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 import uuid
 from .models import InputUrl
 # Create your views here.
