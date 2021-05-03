@@ -93,8 +93,7 @@
         </div>
       </form>
 
-      <section id="section"></section>
-      <h2 id="result"></h2>
+      <section id="section"><h2 id="result"></h2></section>
     </main>
 
     <script type="text/javascript">
@@ -109,7 +108,7 @@
             csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
           },
           success: function (data) {
-            $("h2").html("https://ommg.herokuapp.com/" + data);
+            $("h2").html("http://www.omkumar.ga" + data);
           },
         });
       });

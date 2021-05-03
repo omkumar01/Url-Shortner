@@ -20,4 +20,4 @@ def create(request):
 
 def go(request, pk):
     url_details = InputUrl.objects.get(uuid=pk)
-    return redirect(url_details.link)
+    return redirect(f"http://{url_details.link}")
